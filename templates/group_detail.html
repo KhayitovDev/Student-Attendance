@@ -1,0 +1,4 @@
+<h1>Details for {{group.title}}</h1>
+<h3>Number of students {{group.student_set.all.count}}</h3>
+
+<a href="{% url 'take_attendance' group.id %}">Take attendance</a>
