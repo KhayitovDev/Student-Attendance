@@ -1,6 +1,24 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+  
 
-<form method="POST">
+
+<form method="POST" class="max-w-lg mx-auto p-6 bg-gray-500 shadow-md rounded-lg">
   {% csrf_token %}
-  {{form.as_p}}
-  <input type="submit" value="Submit Attendance" />
+  <div class="mb-6">
+    {% for field in form %}
+      <div class="mb-2">
+        {{ field.label_tag }}
+      </div>
+      {{ field|add_class:"w-full" }}
+    {% endfor %}
+  </div>
+  <div class="mt-6">
+    <input type="submit" value="Submit Attendance" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full cursor-pointer text-lg">
+  </div>
 </form>
+
+
+{% endblock content %}
+

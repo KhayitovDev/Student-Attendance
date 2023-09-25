@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+      <table class="table-auto w-full text-left whitespace-no-wrap">
+        <thead>
+          <tr>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Group</th>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Date</th>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">TNO Absent Students</th>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"><strong>Absent</strong> Students Credentials</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance_records  %}
+            
+          <tr>
+           
+            <td class="px-4 py-3">{{record.group.title}}</td>
+            <td class="px-4 py-3"><strong>{{ record.date }}</strong></td>
+            <td class="px-4 py-3">{{record.student.all.count}}</td>
+            <td class="px-4 py-3">
+                {% for student in record.student.all %}
+                {% if record.is_absent %}
+                 <li>{{student.first_name}} {{student.last_name}}</li> 
+                  <hr>
+                {% endif %}
+                {% endfor %}
+            </td>      
+                 
+          </tr>   
+            {% endfor %}
+        
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
