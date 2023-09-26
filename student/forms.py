@@ -8,6 +8,12 @@ class AttendanceForm(forms.ModelForm):
         queryset=Student.objects.all(),
         widget=forms.SelectMultiple(attrs={'class': 'form-control form-control-lg'}),
     )
+    is_absent = forms.BooleanField(
+        label='Is Absent',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input', 'style': 'transform: scale(1.5);'}),
+    )
+
     def __init__(self, group_id, *args, **kwargs):
         super(AttendanceForm, self).__init__( *args, **kwargs)
         self.fields['student'].queryset = Student.objects.filter(group_id=group_id)
